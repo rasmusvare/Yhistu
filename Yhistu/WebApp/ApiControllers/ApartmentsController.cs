@@ -56,27 +56,6 @@ public class ApartmentsController : ControllerBase
         return Ok(res);
     }
 
-/*
-    // GET: api/Apartments
-
-    /// <summary>
-    /// Returns all the apartments connected to the specified association
-    /// </summary>
-    /// <param name="associationId">Id of the association</param>
-    /// <returns>List of apartments</returns>
-    [HttpGet("association/{associationId:guid}")]
-    [Produces("application/json")]
-    [ProducesResponseType(typeof(App.Public.DTO.v1.Apartment), StatusCodes.Status200OK)]
-    [ProducesErrorResponseType(typeof(RestErrorResponse))]
-    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<ActionResult<IEnumerable<Apartment>>> GetAssociationApartments(Guid associationId)
-    {
-        //TODO : !!!
-        return Ok();
-    }
-*/
-
     // GET: api/Apartments
 
     /// <summary>

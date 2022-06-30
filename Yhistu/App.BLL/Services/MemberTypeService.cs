@@ -15,7 +15,6 @@ public class MemberTypeService:BaseEntityService<App.BLL.DTO.MemberType, App.DAL
 
     public async Task<Guid?> GetAdminId()
     {
-        //TODO: Doesn't really work
         return await Repository.GetAdminId();
     }
 

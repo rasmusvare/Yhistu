@@ -68,7 +68,8 @@ public class MeterReadingController : ControllerBase
 
         var meter = await _bll.Meters.FirstOrDefaultAsync(meterId);
 
-        if (meter?.ApartmentId == null)
+        if (meter?.ApartmentId == null
+            && meter?.BuildingId == null)
         {
             var errorResponse = new RestErrorResponse
             {
@@ -87,7 +88,29 @@ public class MeterReadingController : ControllerBase
             return NotFound(errorResponse);
         }
         
-        if (!await _bll.ApartmentPersons.HasConnection(personId, meter.ApartmentId.Value) &&
+        if ( meter.ApartmentId != null &&
+            !await _bll.ApartmentPersons.HasConnection(personId, meter.ApartmentId.Value) &&
+            !await _bll.Members.IsAdmin(personId, associationId.Value))
+        {
+            var errorResponse = new RestErrorResponse
+            {
+                Type = "https://datatracker.ietf.org/doc/html/rfc7235#section-3.1",
+                Title = "Unauthorised",
+                Status = HttpStatusCode.Unauthorized,
+                TraceId = Activity.Current?.Id ?? HttpContext.TraceIdentifier,
+                Errors =
+                {
+                    ["Unauthorised"] = new List<string>
+                    {
+                        "User does not have permission to view the meter readings of this meter"
+                    }
+                }
+            };
+            return Unauthorized(errorResponse);
+        }
+        
+        if ( meter.ApartmentId != null &&
+            !await _bll.ApartmentPersons.HasConnection(personId, meter.ApartmentId.Value) &&
             !await _bll.Members.IsAdmin(personId, associationId.Value))
         {
             var errorResponse = new RestErrorResponse
@@ -338,7 +361,8 @@ public class MeterReadingController : ControllerBase
         
         var meter = await _bll.Meters.FirstOrDefaultAsync(meterReading.MeterId);
 
-        if (meter?.ApartmentId == null)
+        if (meter?.ApartmentId == null &&
+            meter?.BuildingId==null)
         {
             var errorResponse = new RestErrorResponse
             {
@@ -357,7 +381,8 @@ public class MeterReadingController : ControllerBase
             return NotFound(errorResponse);
         }
         
-        if (!await _bll.ApartmentPersons.HasConnection(personId, meter.ApartmentId.Value) &&
+        if (meter.ApartmentId != null &&
+            !await _bll.ApartmentPersons.HasConnection(personId, meter.ApartmentId.Value) &&
             !await _bll.Members.IsAdmin(personId, associationId.Value))
         
 

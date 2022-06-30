@@ -260,7 +260,6 @@ public class AccountController : ControllerBase
 
 
         // Create new Person 
-        // TODO: VALESTI ACCESSIMINE!
         var personDb = await _bll.Persons.FindByEmail(appUser.Email);
         Console.WriteLine();
         Console.WriteLine();

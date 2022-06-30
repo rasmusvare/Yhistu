@@ -45,8 +45,6 @@ public class BaseEntityRepository<TDalEntity, TDomainEntity, TKey, TDbContext> :
 
     protected virtual IQueryable<TDomainEntity> CreateQuery(bool noTracking = true)
     {
-        // TODO: entity ownership control 
-
         var query = RepoDbSet.AsQueryable();
 
         if (noTracking)

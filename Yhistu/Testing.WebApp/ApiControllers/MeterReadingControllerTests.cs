@@ -172,7 +172,7 @@ public class MeterReadingControllerTests : IClassFixture<CustomWebApplicationFac
         );
 
         responseData.Should().NotBeNull();
-        responseData.Name.Should().Be("IT Kolledži korteriühistu");
+        responseData?.Name.Should().Be("IT Kolledži korteriühistu");
 
         _association = responseData;
 

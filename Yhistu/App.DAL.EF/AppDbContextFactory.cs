@@ -10,7 +10,7 @@ public class AppDbContextFactory
         public AppDbContext CreateDbContext(string[] args)
         {
             var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
-            optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Username=postgres;password=postgres;database=Yhistu");
+            optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Username=postgres;Password=postgres;Database=Yhistu");
 
             return new AppDbContext(optionsBuilder.Options);
         }

@@ -18,7 +18,7 @@ using WebApp;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-var connectionString = builder.Configuration.GetConnectionString("NpgsqlConnectionAzure");
+var connectionString = builder.Configuration.GetConnectionString("NpgsqlConnectionCleverCloud");
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseNpgsql(connectionString);

@@ -7,7 +7,6 @@ public interface IEntityRepository<TEntity> : IEntityRepository<TEntity, Guid>
 {
 }
 
-//TODO: Check for user ownerhip on everything except create
 public interface IEntityRepository<TEntity, TKey>
     where TEntity : class, IDomainEntityId<TKey>
     where TKey : IEquatable<TKey>

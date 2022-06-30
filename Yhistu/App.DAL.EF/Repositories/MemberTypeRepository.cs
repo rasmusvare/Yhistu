@@ -17,8 +17,6 @@ public class MemberTypeRepository : BaseEntityRepository<App.DAL.DTO.MemberType,
 
     public async Task<Guid?> GetAdminId()
     {
-        //TODO: Doesn't really work
-
         var query = CreateQuery();
         var admin = await query.FirstOrDefaultAsync(m => m.IsAdministrator);
 

@@ -430,14 +430,6 @@ public class AssociationsController : ControllerBase
             }
         }
 
-        // var relationshipTypes = await _bll.RelationshipTypes.GetAllAsync(id);
-        // foreach (var type in relationshipTypes)
-        // {
-        //     _bll.RelationshipTypes.Remove(type);
-        // }
-
-        // await _bll.SaveChangesAsync();
-
         var measuringUnits = await _bll.MeasuringUnits.GetAllAsync(id);
         foreach (var unit in measuringUnits)
         {

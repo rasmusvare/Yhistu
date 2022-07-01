@@ -261,15 +261,6 @@ public class AccountController : ControllerBase
 
         // Create new Person 
         var personDb = await _bll.Persons.FindByEmail(appUser.Email);
-        Console.WriteLine();
-        Console.WriteLine();
-        Console.WriteLine();
-        Console.WriteLine();
-        Console.WriteLine();
-        Console.WriteLine();
-        Console.WriteLine();
-        Console.WriteLine();
-        Console.WriteLine(personDb?.FirstName);
         
         var person = await _context.Persons.FirstOrDefaultAsync(p => p.Email == appUser.Email);
         if (person == null)
@@ -303,9 +294,6 @@ public class AccountController : ControllerBase
             _context.Persons.Update(person);
             await _context.SaveChangesAsync();
         }
-
-        // await _context.SaveChangesAsync();
-
 
         // Get claims based user
         var claimsPrincipal = await _signInManager.CreateUserPrincipalAsync(appUser);

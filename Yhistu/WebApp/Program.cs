@@ -18,7 +18,7 @@ using WebApp;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-var connectionString = builder.Configuration.GetConnectionString("NpgsqlConnectionCleverCloud");
+var connectionString = builder.Configuration.GetConnectionString("PostgresConnectionCleverCloud");
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseNpgsql(connectionString);
@@ -35,9 +35,6 @@ builder.Services.AddAutoMapper(
 );
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-
-// builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-//     .AddEntityFrameworkStores<AppDbContext>();
 
 builder.Services
     .AddIdentity<AppUser, AppRole>(options =>
